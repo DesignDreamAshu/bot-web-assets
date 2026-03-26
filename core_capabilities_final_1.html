@@ -42,6 +42,40 @@
       width: 100%;
     }
 
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, 520px);
+      gap: 48px;
+      align-items: start;
+      margin-bottom: 34px;
+    }
+
+    .intro-title,
+    .intro-copy {
+      font-family: 'PP Mori', 'PPMori', 'Segoe UI', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      color: #f3f5f6;
+    }
+
+    .intro-title {
+      font-size: 42px;
+      line-height: 120%;
+      letter-spacing: -0.02em;
+      max-width: 700px;
+    }
+
+    .intro-copy {
+      font-size: 18px;
+      line-height: 150%;
+      color: rgba(243, 245, 246, 0.88);
+      max-width: 520px;
+    }
+
+    .intro-copy p + p {
+      margin-top: 20px;
+    }
+
     /* SVG SCENE */
     .svg-scene {
       width: min(58vw, 766px);
@@ -466,6 +500,20 @@
         padding: 18px 10px 24px;
       }
 
+      .intro {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        margin-bottom: 24px;
+      }
+
+      .intro-title {
+        font-size: 30px;
+      }
+
+      .intro-copy {
+        font-size: 16px;
+      }
+
       .layout {
         flex-direction: column;
         align-items: center;
@@ -508,6 +556,13 @@
 
 <body>
   <div class="page">
+    <div class="intro">
+      <div class="intro-title">Core Capabilities<br>We Build Inside Every GCC</div>
+      <div class="intro-copy">
+        <p>Every team we build combines platform expertise with functional capability to power our customers offering enterprise-grade solutions.</p>
+        <p>Here's what our team delivers across your tech stack:</p>
+      </div>
+    </div>
     <div class="layout">
       <!-- CAPABILITY LIST -->
       <div class="cap-list-wrapper">
