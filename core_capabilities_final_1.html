@@ -1844,6 +1844,53 @@
     activeId = '';
     setActive('tile0');
   </script>
+  <script>
+    (function () {
+      function getDocHeight() {
+        return Math.max(
+          document.documentElement.scrollHeight,
+          document.body.scrollHeight,
+          document.documentElement.offsetHeight,
+          document.body.offsetHeight
+        );
+      }
+
+      function sendHeight() {
+        window.parent.postMessage(
+          {
+            type: 'core-capabilities-resize',
+            height: getDocHeight()
+          },
+          '*'
+        );
+      }
+
+      window.addEventListener('load', sendHeight);
+      window.addEventListener('resize', sendHeight);
+
+      if (window.ResizeObserver) {
+        const ro = new ResizeObserver(sendHeight);
+        ro.observe(document.documentElement);
+        ro.observe(document.body);
+      }
+
+      if (window.MutationObserver) {
+        const mo = new MutationObserver(sendHeight);
+        mo.observe(document.body, { childList: true, subtree: true, attributes: true });
+      }
+
+      setTimeout(sendHeight, 0);
+      setTimeout(sendHeight, 200);
+      setTimeout(sendHeight, 800);
+
+      // Respond to parent pinging for height (solves race condition)
+      window.addEventListener('message', function (e) {
+        if (e.data && e.data.type === 'request-core-capabilities-height') {
+          sendHeight();
+        }
+      });
+    })();
+  </script>
 </body>
 
 </html>
