@@ -1,0 +1,12 @@
+# Ignore local handover artifacts and working dev files
+Core_Capabilities_Dev_Handover.zip
+backup_original/
+*.bak
+*.tmp
+core_capabilities_production_preview.html
+DEVELOPER_HANDOVER_GUIDE.md
+assets/
+index.html
+main.js
+style.css
+webflow-embed.html
